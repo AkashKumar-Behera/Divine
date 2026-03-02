@@ -3,7 +3,7 @@ import fs from "fs";
 import { google } from "googleapis";
 import open from "open";
 
-const PORT = 4002;
+const PORT = 4004;
 const TOKEN_PATH = "./token.json";
 const CREDENTIALS_PATH = "./youtube-oauth.json";
 

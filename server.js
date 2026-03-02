@@ -11,7 +11,7 @@ const axios = require("axios");
 require("dotenv").config();
 
 const app = express();
-const PORT = 4002;
+const PORT = 4004;
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));

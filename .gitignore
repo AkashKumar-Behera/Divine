@@ -1,0 +1,9 @@
+/.env
+/dynamic_nightbot.json
+/nightbot_token.json
+/node_modules
+/readme.md
+/streamlabs_token.json
+/token.json
+
+/youtube-oauth.json

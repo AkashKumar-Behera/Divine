@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <title>YT Live Chat Connect</title>
+  <style>
+    body {
+      background-image: url(bg.png);
+      background-size: cover;
+      background-repeat: no-repeat;
+      color: white;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .main {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 10px;
+    }
+
+    .box {
+      border: 5px solid #2b120037;
+      width: 400px;
+      display: flex;
+      flex-direction: column;
+      background-color: #0000004a;
+      backdrop-filter: blur(10px);
+      padding: 10px;
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    .head {
+      justify-content: center;
+      display: flex;
+      flex-direction: row;
+      gap: 15px;
+      align-items: center;
+    }
+
+    input {
+      padding: 10px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 4px;
+    }
+
+    button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      background-color: #007BFF;
+      color: white;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #00b32a;
+    }
+
+    p {
+      color: #ffffff;
+      margin-top: 20px;
+      font-size: 16px;
+    }
+
+    @media (max-width: 600px) {
+      .box {
+        width: 90%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="main">
+    <div class="box">
+      <div class="head">
+        <svg xmlns="http://www.w3.org/2000/svg" class="external-icon" viewBox="0 0 28.57  20" focusable="false"
+          style="pointer-events: none; display: block; width: 10%; height: 10%;">
+          <svg viewBox="0 0 28.57 20" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+            <g>
+              <path
+                d="M27.9727 3.12324C27.6435 1.89323 26.6768 0.926623 25.4468 0.597366C23.2197 2.24288e-07 14.285 0 14.285 0C14.285 0 5.35042 2.24288e-07 3.12323 0.597366C1.89323 0.926623 0.926623 1.89323 0.597366 3.12324C2.24288e-07 5.35042 0 10 0 10C0 10 2.24288e-07 14.6496 0.597366 16.8768C0.926623 18.1068 1.89323 19.0734 3.12323 19.4026C5.35042 20 14.285 20 14.285 20C14.285 20 23.2197 20 25.4468 19.4026C26.6768 19.0734 27.6435 18.1068 27.9727 16.8768C28.5701 14.6496 28.5701 10 28.5701 10C28.5701 10 28.5677 5.35042 27.9727 3.12324Z"
+                fill="#FF0000"></path>
+              <path d="M11.4253 14.2854L18.8477 10.0004L11.4253 5.71533V14.2854Z" fill="white"></path>
+            </g>
+          </svg>
+        </svg>
+        <h2>Connect YouTube Live Chat</h2>
+      </div>
+
+
+      <input type="text" id="streamUrl" placeholder="Paste Live Stream URL here">
+      <button onclick="connect()">Connect</button>
+      <button onclick="disconnect()">Disconnect</button>
+
+      <p id="status"></p>
+    </div>
+  </div>
+  <script>
+    async function connect() {
+      const url = document.getElementById("streamUrl").value;
+
+      const res = await fetch("/connect-chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ url })
+      });
+
+      const data = await res.json();
+
+      document.getElementById("status").innerText =
+        data.success ? data.message : data.error;
+    }
+
+    async function disconnect() {
+    const res = await fetch("/disconnect-chat", {
+      method: "POST"
+    });
+
+    const data = await res.json();
+
+    document.getElementById("status").innerText =
+      data.success ? data.message : data.error;
+  }
+  </script>
+</body>
+
+</html>

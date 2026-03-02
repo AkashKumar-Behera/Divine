@@ -265,22 +265,18 @@ async function handleChatMessage(author, message) {
     lower === "yes"
   ) {
     if (isProcessingRedeem) return;
-
+  
     isProcessingRedeem = true;
-
-    try {
-      await axios.get(`http://localhost:${PORT}/buy`);
-
-      await sendNightbotMessage(
-        `@${author} 🎉 Diamonds successfully delivered!`
-      );
-
-      delete redeemSessions[author];
-
-    } catch (err) {
-      console.error("Buy Error:", err.message);
-    }
-
+  
+    // ❌ BUY REMOVE KIYA
+    await sendNightbotMessage(
+      `@${author} 🎉 Diamonds successfully delivered!`
+    );
+  
+    console.log("✅ Mock Delivery Sent (No Purchase)");
+  
+    delete redeemSessions[author];
+  
     isProcessingRedeem = false;
   }
 

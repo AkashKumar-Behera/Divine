@@ -265,10 +265,8 @@ async function handleChatMessage(author, message) {
     lower === "yes"
   ) {
     if (isProcessingRedeem) return;
-
     isProcessingRedeem = true;
     
-
     // ❌ BUY REMOVE KIYA
     await sendNightbotMessage(
       `@${author} 🎉 Diamonds successfully delivered!`
